@@ -30,35 +30,82 @@ tags:
   - Automotive
   - Electrical Systems
   - Technology
+  - Aerospace and Defense
+  - Advanced Driver-Assistance Systems
+  - Connectors
+  - Software-Defined Vehicles
+  - Embedded Software
 description: >-
-  Aptiv is a major US corporation and Fortune 1000 company. The Aptiv API provides programmatic access to its platform services, data, and integrations for enterprise customers and partners.
+  Aptiv is a Fortune 500 Tier-1 automotive and aerospace technology supplier headquartered in
+  Dublin, Ireland, formed from Delphi Automotive in 2017. It sells electrical architecture and
+  interconnect systems (connectors, cabling, busbars, HellermannTyton fastening), advanced
+  driver-assistance systems, digital cockpit and advanced compute hardware, and embedded software:
+  the Aptiv LINC software platform, ADAS software, and Aptiv Connect Qualifier preproduction
+  validation analytics, with Wind River (acquired 2022) as its intelligent-edge software business.
+  Aptiv publishes no public API, developer portal, SDK or machine-readable contract; its software
+  platforms are delivered to OEMs under program contracts, and its only public developer-facing
+  material is marketing prose about the "open APIs" inside those platforms.
 created: '2026-04-19'
-modified: '2026-04-19'
+modified: '2026-09-18'
 specificationVersion: '0.23'
-apis:
-  - aid: aptiv:aptiv-api
-    name: Aptiv API
-    tags:
-      - Automotive
-      - Electrical Systems
-      - Technology
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    baseURL: https://api.aptiv.com
-    humanURL: https://developer.aptiv.com
-    properties:
-      - url: https://developer.aptiv.com/docs
-        type: Documentation
-    description: >-
-      The Aptiv API provides access to platform services and data for enterprise integration and automation.
+apis: []
 common:
-  - type: DomainSecurity
-    url: security/aptiv-domain-security.yml
+  - type: Website
+    url: https://www.aptiv.com
+  - type: Blog
+    url: https://www.aptiv.com/en/insights
+  - type: Newsroom
+    url: https://www.aptiv.com/en/newsroom
+  - type: Support
+    url: https://www.aptiv.com/en/contact
+  - type: TermsOfService
+    url: https://www.aptiv.com/en/terms-of-use
+  - type: PrivacyPolicy
+    url: https://www.aptiv.com/en/privacy-statement
+  - type: Careers
+    url: https://www.aptiv.com/en/jobs
   - type: GitHubOrganization
     url: https://github.com/aptiv
   - type: LinkedIn
     url: https://www.linkedin.com/company/aptiv
-  - type: Website
-    url: https://www.aptiv.com
+  - type: WellKnown
+    url: well-known/aptiv-well-known.yml
+  - type: Plans
+    url: plans/aptiv-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/aptiv-rate-limits.yml
+  - type: FinOps
+    url: finops/aptiv-finops.yml
+  - type: DomainSecurity
+    url: security/aptiv-domain-security.yml
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-09-18'
+  status: minimal
+  artifacts_added: 2
+  pass: local-v3
+x-coverage:
+  state: none
+  reason: no-developer-program
+  detail: >-
+    Aptiv is a Tier-1 automotive/aerospace supplier with no developer program: the api.aptiv.com
+    and developer.aptiv.com hosts the prior record carried have no DNS record at all, the 2,020-URL
+    www.aptiv.com sitemap contains no developer, docs or API page, the GitHub org has zero public
+    repositories, and the LINC, ADAS-software and Connect Qualifier pages only describe "open APIs"
+    inside OEM-contracted platforms behind contact and demo forms.
+  evidence:
+    - url: https://developer.aptiv.com/docs
+      status: 0
+    - url: https://api.aptiv.com/openapi.json
+      status: 0
+    - url: https://www.aptiv.com/openapi.json
+      status: 404
+    - url: https://www.aptiv.com/llms.txt
+      status: 404
+    - url: https://api.github.com/orgs/aptiv
+      status: 200
+    - url: https://www.aptiv.com/en/solutions/linc
+      status: 200
+  checked: '2026-09-18'

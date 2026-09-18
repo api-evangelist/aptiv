@@ -1,0 +1,444 @@
+generated: '2026-09-18'
+method: probed
+source: 'direct unauthenticated HTTPS probes (browser User-Agent) of every host the record knows: registrable domain
+  + www, the Interconnect and investor-relations hosts linked from the site, and the api/developer hosts the prior
+  record carried'
+name: Aptiv .well-known Probe
+description: 'Aptiv serves exactly one real discovery document: /.well-known/oauth-authorization-server on www.aptiv.com,
+  an RFC 8414 OAuth 2.0 authorization-server metadata document emitted by the Progress Sitefinity CMS that runs
+  the corporate site. No security.txt, OpenID configuration, api-catalog, ai-plugin, apis.json, llms.txt or A2A
+  agent card is served on any host. win.aptiv.com and ir.aptiv.com are catch-all hosts (200 on the negative control)
+  and none of their 200s is a document. developer.aptiv.com and api.aptiv.com do not resolve.'
+hit_count: 1
+hosts:
+- host: www.aptiv.com
+  note: Primary corporate site (Progress Sitefinity CMS behind Azure Front Door). Hard 404s (the site 404 page,
+    92 KB) on every path except /.well-known/oauth-authorization-server, which returns a real RFC 8414 JSON document;
+    the negative-control path 404d, so the hit is not path-echo.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: aptiv-oauth-authorization-server.json
+    content_type: application/json
+    bytes: 317
+    note: 'Real RFC 8414 metadata: issuer https://www.aptiv.com, authorization_code + refresh_token grants, PKCE
+      S256. It is the OAuth server the Sitefinity CMS ships for its own web services, not a product API: the token_endpoint
+      it names (/sitefinity/oauth/token) answers 404 and the authorize endpoint 400 without parameters, and the
+      CMS OData surface at /api/default 302s to a CMS login.'
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/api-catalog.json
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/acp.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+  - path: /security.txt
+    status: 404
+  negative_control:
+    path: /.well-known/aptiv-negative-control-c047e51c.json
+    status: 404
+    content_type: text/html; charset=utf-8
+    bytes: 92208
+  path_echo_control: passed
+- host: aptiv.com
+  note: Apex host. Every path 308s to the same path on www.aptiv.com, which is probed above.
+  documents:
+  - path: /.well-known/security.txt
+    status: 308
+    redirect: https://www.aptiv.com/.well-known/security.txt
+  - path: /.well-known/openid-configuration
+    status: 308
+    redirect: https://www.aptiv.com/.well-known/openid-configuration
+  - path: /.well-known/oauth-authorization-server
+    status: 308
+    redirect: https://www.aptiv.com/.well-known/oauth-authorization-server
+  - path: /.well-known/oauth-protected-resource
+    status: 308
+    redirect: https://www.aptiv.com/.well-known/oauth-protected-resource
+  - path: /.well-known/api-catalog
+    status: 308
+    redirect: https://www.aptiv.com/.well-known/api-catalog
+  - path: /.well-known/api-catalog.json
+    status: 308
+    redirect: https://www.aptiv.com/.well-known/api-catalog.json
+  - path: /.well-known/ai-plugin.json
+    status: 308
+    redirect: https://www.aptiv.com/.well-known/ai-plugin.json
+  - path: /.well-known/ucp.json
+    status: 308
+    redirect: https://www.aptiv.com/.well-known/ucp.json
+  - path: /.well-known/acp.json
+    status: 308
+    redirect: https://www.aptiv.com/.well-known/acp.json
+  - path: /.well-known/aauth-resource.json
+    status: 308
+    redirect: https://www.aptiv.com/.well-known/aauth-resource.json
+  - path: /.well-known/apis.json
+    status: 308
+    redirect: https://www.aptiv.com/.well-known/apis.json
+  - path: /apis.json
+    status: 308
+    redirect: https://www.aptiv.com/apis.json
+  - path: /apis.yml
+    status: 308
+    redirect: https://www.aptiv.com/apis.yml
+  - path: /.well-known/agent-card.json
+    status: 308
+    redirect: https://www.aptiv.com/.well-known/agent-card.json
+  - path: /.well-known/agent.json
+    status: 308
+    redirect: https://www.aptiv.com/.well-known/agent.json
+  - path: /llms.txt
+    status: 308
+    redirect: https://www.aptiv.com/llms.txt
+  - path: /security.txt
+    status: 308
+    redirect: https://www.aptiv.com/security.txt
+  negative_control:
+    path: /.well-known/aptiv-negative-control-dc0f11df.json
+    status: 308
+    content_type: null
+    bytes: 0
+  path_echo_control: passed
+- host: win.aptiv.com
+  note: Aptiv Interconnect (connectors) React SPA. Answers HTTP 200 with the identical 2,276-byte app shell for
+    EVERY path including the negative control - a catch-all, not a document. Nothing here is a hit.
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    hit: false
+    content_type: text/html
+    bytes: 2276
+    note: Catch-all 200 - same body as the negative control; not a document.
+  - path: /.well-known/openid-configuration
+    status: 200
+    hit: false
+    content_type: text/html
+    bytes: 2276
+    note: Catch-all 200 - same body as the negative control; not a document.
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    hit: false
+    content_type: text/html
+    bytes: 2276
+    note: Catch-all 200 - same body as the negative control; not a document.
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    hit: false
+    content_type: text/html
+    bytes: 2276
+    note: Catch-all 200 - same body as the negative control; not a document.
+  - path: /.well-known/api-catalog
+    status: 200
+    hit: false
+    content_type: text/html
+    bytes: 2276
+    note: Catch-all 200 - same body as the negative control; not a document.
+  - path: /.well-known/api-catalog.json
+    status: 200
+    hit: false
+    content_type: text/html
+    bytes: 2276
+    note: Catch-all 200 - same body as the negative control; not a document.
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    hit: false
+    content_type: text/html
+    bytes: 2276
+    note: Catch-all 200 - same body as the negative control; not a document.
+  - path: /.well-known/ucp.json
+    status: 200
+    hit: false
+    content_type: text/html
+    bytes: 2276
+    note: Catch-all 200 - same body as the negative control; not a document.
+  - path: /.well-known/acp.json
+    status: 200
+    hit: false
+    content_type: text/html
+    bytes: 2276
+    note: Catch-all 200 - same body as the negative control; not a document.
+  - path: /.well-known/aauth-resource.json
+    status: 200
+    hit: false
+    content_type: text/html
+    bytes: 2276
+    note: Catch-all 200 - same body as the negative control; not a document.
+  - path: /.well-known/apis.json
+    status: 200
+    hit: false
+    content_type: text/html
+    bytes: 2276
+    note: Catch-all 200 - same body as the negative control; not a document.
+  - path: /apis.json
+    status: 200
+    hit: false
+    content_type: text/html
+    bytes: 2276
+    note: Catch-all 200 - same body as the negative control; not a document.
+  - path: /apis.yml
+    status: 200
+    hit: false
+    content_type: text/html
+    bytes: 2276
+    note: Catch-all 200 - same body as the negative control; not a document.
+  - path: /.well-known/agent-card.json
+    status: 200
+    hit: false
+    content_type: text/html
+    bytes: 2276
+    note: Catch-all 200 - same body as the negative control; not a document.
+  - path: /.well-known/agent.json
+    status: 200
+    hit: false
+    content_type: text/html
+    bytes: 2276
+    note: Catch-all 200 - same body as the negative control; not a document.
+  - path: /llms.txt
+    status: 200
+    hit: false
+    content_type: text/html
+    bytes: 2276
+    note: Catch-all 200 - same body as the negative control; not a document.
+  - path: /security.txt
+    status: 200
+    hit: false
+    content_type: text/html
+    bytes: 2276
+    note: Catch-all 200 - same body as the negative control; not a document.
+  negative_control:
+    path: /.well-known/aptiv-negative-control-0b1bdf57.json
+    status: 200
+    content_type: text/html
+    bytes: 2276
+  path_echo_control: failed
+- host: ir.aptiv.com
+  note: Investor-relations host on a third-party IR platform. Answers HTTP 200 with the 11-byte body 'Invalid key'
+    for every /.well-known/* path including the negative control - a catch-all router, not a document. Nothing here
+    is a hit.
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    hit: false
+    content_type: text/html; charset=utf-8
+    bytes: 11
+    note: Catch-all 200 - same body as the negative control; not a document.
+  - path: /.well-known/openid-configuration
+    status: 301
+    redirect: https://ir.aptiv.com/.well-known/openid-configuration/
+  - path: /.well-known/oauth-authorization-server
+    status: 301
+    redirect: https://ir.aptiv.com/.well-known/oauth-authorization-server/
+  - path: /.well-known/oauth-protected-resource
+    status: 301
+    redirect: https://ir.aptiv.com/.well-known/oauth-protected-resource/
+  - path: /.well-known/api-catalog
+    status: 301
+    redirect: https://ir.aptiv.com/.well-known/api-catalog/
+  - path: /.well-known/api-catalog.json
+    status: 200
+    hit: false
+    content_type: text/html; charset=utf-8
+    bytes: 11
+    note: Catch-all 200 - same body as the negative control; not a document.
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    hit: false
+    content_type: text/html; charset=utf-8
+    bytes: 11
+    note: Catch-all 200 - same body as the negative control; not a document.
+  - path: /.well-known/ucp.json
+    status: 200
+    hit: false
+    content_type: text/html; charset=utf-8
+    bytes: 11
+    note: Catch-all 200 - same body as the negative control; not a document.
+  - path: /.well-known/acp.json
+    status: 200
+    hit: false
+    content_type: text/html; charset=utf-8
+    bytes: 11
+    note: Catch-all 200 - same body as the negative control; not a document.
+  - path: /.well-known/aauth-resource.json
+    status: 200
+    hit: false
+    content_type: text/html; charset=utf-8
+    bytes: 11
+    note: Catch-all 200 - same body as the negative control; not a document.
+  - path: /.well-known/apis.json
+    status: 200
+    hit: false
+    content_type: text/html; charset=utf-8
+    bytes: 11
+    note: Catch-all 200 - same body as the negative control; not a document.
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 200
+    hit: false
+    content_type: text/html; charset=utf-8
+    bytes: 11
+    note: Catch-all 200 - same body as the negative control; not a document.
+  - path: /.well-known/agent.json
+    status: 200
+    hit: false
+    content_type: text/html; charset=utf-8
+    bytes: 11
+    note: Catch-all 200 - same body as the negative control; not a document.
+  - path: /llms.txt
+    status: 404
+  - path: /security.txt
+    status: 404
+  negative_control:
+    path: /.well-known/aptiv-negative-control-d898faee.json
+    status: 200
+    content_type: text/html; charset=utf-8
+    bytes: 11
+  path_echo_control: failed
+- host: developer.aptiv.com
+  note: The humanURL the prior apis.yml carried. The hostname has NO DNS record (status 000 on every path). This
+    host does not exist; the record was corrected in this pass.
+  documents:
+  - path: /.well-known/security.txt
+    status: 0
+    note: no DNS record
+  - path: /.well-known/openid-configuration
+    status: 0
+    note: no DNS record
+  - path: /.well-known/oauth-authorization-server
+    status: 0
+    note: no DNS record
+  - path: /.well-known/oauth-protected-resource
+    status: 0
+    note: no DNS record
+  - path: /.well-known/api-catalog
+    status: 0
+    note: no DNS record
+  - path: /.well-known/api-catalog.json
+    status: 0
+    note: no DNS record
+  - path: /.well-known/ai-plugin.json
+    status: 0
+    note: no DNS record
+  - path: /.well-known/ucp.json
+    status: 0
+    note: no DNS record
+  - path: /.well-known/acp.json
+    status: 0
+    note: no DNS record
+  - path: /.well-known/aauth-resource.json
+    status: 0
+    note: no DNS record
+  - path: /.well-known/apis.json
+    status: 0
+    note: no DNS record
+  - path: /apis.json
+    status: 0
+    note: no DNS record
+  - path: /apis.yml
+    status: 0
+    note: no DNS record
+  - path: /.well-known/agent-card.json
+    status: 0
+    note: no DNS record
+  - path: /.well-known/agent.json
+    status: 0
+    note: no DNS record
+  - path: /llms.txt
+    status: 0
+    note: no DNS record
+  - path: /security.txt
+    status: 0
+    note: no DNS record
+  negative_control:
+    path: /.well-known/aptiv-negative-control-deb76b97.json
+    status: 0
+    content_type: null
+    bytes: 0
+  path_echo_control: passed
+- host: api.aptiv.com
+  note: The baseURL the prior apis.yml carried. The hostname has NO DNS record (status 000 on every path). This
+    host does not exist; the record was corrected in this pass.
+  documents:
+  - path: /.well-known/security.txt
+    status: 0
+    note: no DNS record
+  - path: /.well-known/openid-configuration
+    status: 0
+    note: no DNS record
+  - path: /.well-known/oauth-authorization-server
+    status: 0
+    note: no DNS record
+  - path: /.well-known/oauth-protected-resource
+    status: 0
+    note: no DNS record
+  - path: /.well-known/api-catalog
+    status: 0
+    note: no DNS record
+  - path: /.well-known/api-catalog.json
+    status: 0
+    note: no DNS record
+  - path: /.well-known/ai-plugin.json
+    status: 0
+    note: no DNS record
+  - path: /.well-known/ucp.json
+    status: 0
+    note: no DNS record
+  - path: /.well-known/acp.json
+    status: 0
+    note: no DNS record
+  - path: /.well-known/aauth-resource.json
+    status: 0
+    note: no DNS record
+  - path: /.well-known/apis.json
+    status: 0
+    note: no DNS record
+  - path: /apis.json
+    status: 0
+    note: no DNS record
+  - path: /apis.yml
+    status: 0
+    note: no DNS record
+  - path: /.well-known/agent-card.json
+    status: 0
+    note: no DNS record
+  - path: /.well-known/agent.json
+    status: 0
+    note: no DNS record
+  - path: /llms.txt
+    status: 0
+    note: no DNS record
+  - path: /security.txt
+    status: 0
+    note: no DNS record
+  negative_control:
+    path: /.well-known/aptiv-negative-control-6d36cc4e.json
+    status: 0
+    content_type: null
+    bytes: 0
+  path_echo_control: passed

@@ -4,41 +4,46 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Aptiv
 providerId: aptiv
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-05'
-reconciled: false
+generated: '2026-09-18'
+method: searched
+source: >-
+  https://www.aptiv.com/en/solutions/software-and-services and
+  https://www.aptiv.com/en/solutions/linc (fetched 2026-09-18), plus the full
+  www.aptiv.com sitemap (2,020 /en/ URLs). No /pricing, /plans, /developers or
+  /api page exists on any Aptiv host; developer.aptiv.com has no DNS record.
+modified: '2026-09-18'
+reconciled: true
 tags:
 - Automotive
 - Electrical Systems
 - Technology
-description: Aptiv does not publish a public API plans / pricing page. This artifact records the absence
-  of a self-serve commercial surface; see notes for research findings.
-notes: Aptiv does not publish a public developer pricing page. The developer.aptiv.com host did not respond
-  when probed; commercial terms for any platform integrations are negotiated directly.
-sources:
-- https://www.aptiv.com
-plans:
-- id: aptiv-contact-sales
-  name: Contact Sales
-  type: enterprise
-  description: No published self-serve plan. Commercial access is arranged directly with the provider;
-    quotas and pricing are governed by individual customer agreements.
-  entries:
-  - label: API Access
-    name: api_access
-    type: flat
-    metric: varies
-    limit: -1
-    timeFrame: usage
-    geo: global
-    unit: 1
-    price: contact sales
-    userMultiplied: false
-  elements:
-  - name: Negotiated Commercial Terms
-  - name: Partner Onboarding
+description: >-
+  Aptiv publishes no API plans or pricing of any kind, because it publishes no
+  API product. It is a Tier-1 automotive and aerospace supplier whose software
+  (the LINC software platform, ADAS software, Aptiv Connect Qualifier
+  preproduction-validation analytics) is sold to OEMs under negotiated program
+  contracts. The only commercial entry points on the public site are contact
+  and "connect with an engineer" forms and a demo request for Qualifier.
+notes: >-
+  plan_count 0 is a measured zero, not an unchecked field. The prior version of
+  this artifact was a bulk-sweep placeholder that invented a "Contact Sales"
+  plan; it has been replaced with the honest absence.
+plan_count: 0
+pricing_model: enterprise / negotiated OEM program contracts
+currency: null
+free_tier: false
+trial: false
+plans: []
+commercial_entry_points:
+- url: https://www.aptiv.com/en/contact
+  status: 200
+  kind: contact form
+- url: https://www.aptiv.com/en/solutions/software-and-services/automotive-services/contact-us
+  status: 200
+  kind: software and services contact form
+- url: https://win.aptiv.com/support/connect-with-an-engineer
+  status: 200
+  kind: Aptiv Interconnect engineering contact (connectors, not software)
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

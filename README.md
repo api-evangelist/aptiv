@@ -64,7 +64,7 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Aptiv is a major US corporation and Fortune 1000 company. The Aptiv API provides programmatic access to its platform services, data, and integrations for enterprise customers and partners.
+Aptiv is a Fortune 500 Tier-1 automotive and aerospace technology supplier headquartered in Dublin, Ireland, formed from Delphi Automotive in 2017. It sells electrical architecture and interconnect systems, advanced driver-assistance systems, digital cockpit and advanced compute hardware, and embedded software (the LINC software platform, ADAS software, Aptiv Connect Qualifier), with Wind River as its intelligent-edge software business. Aptiv publishes no public API, developer portal, SDK or machine-readable contract; its software platforms are delivered to OEMs under program contracts.
 
 **URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/aptiv/refs/heads/main/apis.yml)
 
@@ -72,12 +72,12 @@ Aptiv is a major US corporation and Fortune 1000 company. The Aptiv API provides
 
 ## Tags:
 
- - Automotive, Electrical Systems, Technology
+ - Automotive, Electrical Systems, Technology, Aerospace and Defense, Advanced Driver-Assistance Systems, Connectors, Software-Defined Vehicles, Embedded Software
 
 ## Timestamps
 
 - **Created:** 2026-04-19
-- **Modified:** 2026-04-19
+- **Modified:** 2026-09-18
 
 ## Maintainers
 
